@@ -188,11 +188,13 @@ public class RestaurantList extends AppCompatActivity { // extends = son of
             RestaurantHolder holder;
             if (row == null) {
                 LayoutInflater inflater = getLayoutInflater();
+                /* The LayoutInflater class is used to instantiate the contents of layout XML files into their corresponding View objects.
+                In other words, it takes an XML file as input and builds the View objects from it.      */
                 row = inflater.inflate(R.layout.row, parent, false);
                 holder = new RestaurantHolder(row);
                 row.setTag(holder);
             } else {
-                holder = (RestaurantHolder)row.getTag();
+                holder = (RestaurantHolder) row.getTag(); //Narrowing Casting (Explicit) –
             }
             holder.populateFrom(model.get(position));
             return (row);
