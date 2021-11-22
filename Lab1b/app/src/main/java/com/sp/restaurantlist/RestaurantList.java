@@ -44,7 +44,7 @@ public class RestaurantList extends AppCompatActivity { // extends = son of
         @Override
         public void onClick(View v) {
             // To read data from restaurantName EditText
-            String nameStr = restaurantName.getText().toString();
+            String nameStr = restaurantName.getText().toString();  //convert the returned CharSequence into a String
             String telStr = restaurantTel.getText().toString();
             String addrStr = restaurantAddress.getText().toString();
             String restType = "";
