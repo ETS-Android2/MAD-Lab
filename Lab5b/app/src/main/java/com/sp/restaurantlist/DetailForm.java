@@ -2,6 +2,7 @@ package com.sp.restaurantlist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.net.Inet4Address;
 
 public class DetailForm extends AppCompatActivity {
     private EditText restaurantName;
@@ -28,6 +31,8 @@ public class DetailForm extends AppCompatActivity {
     private GPSTracker gpsTracker;
     private double latitude = 0.0d;
     private double longitude = 0.0d;
+    private double myLatitude = 0.0d;
+    private double myLongitude = 0.0d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +108,19 @@ public class DetailForm extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "your location is - \nLat: " + latitude
                     + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
             }
+            return (true);
+        } else if (item.getItemId() == R.id.show_map) {
+            // Get my current location
+            myLatitude = gpsTracker.getLatitude();
+            myLongitude = gpsTracker.getLongitude();
+
+            Intent intent = new Intent(this, RestaurantMap.class);
+            intent.putExtra("LATITUDE", latitude);
+            intent.putExtra("LONGITUDE", longitude);
+            intent.putExtra("MYLATITUDE", myLatitude);
+            intent.putExtra("MYLONGITUDE", myLongitude);
+            intent.putExtra("NAME", restaurantName.getText().toString());
+            startActivity(intent);
             return (true);
         }
         return super.onOptionsItemSelected(item);

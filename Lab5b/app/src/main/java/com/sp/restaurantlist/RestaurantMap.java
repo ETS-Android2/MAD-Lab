@@ -8,25 +8,38 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.sp.restaurantlist.databinding.ActivityRestaurantMapBinding;
 
 public class RestaurantMap extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ActivityRestaurantMapBinding binding;
+    private double lat;
+    private double lon;
+    private String restaurantName;
+    private double myLat;
+    private double myLon;
+    private LatLng RESTAURANT;
+    private LatLng ME;
+    //private ActivityRestaurantMapBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_restaurant_map);
 
-        binding = ActivityRestaurantMapBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        lat = getIntent().getDoubleExtra("LATITUDE", 0);
+        lon = getIntent().getDoubleExtra("LONGITUDE", 0);
+        restaurantName = getIntent().getStringExtra("NAME");
+        myLat = getIntent().getDoubleExtra("MYLATITUDE", 0);
+        myLon = getIntent().getDoubleExtra("MYLONGITUDE", 0);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.restaurant_map);
         mapFragment.getMapAsync(this);
     }
 
@@ -43,9 +56,20 @@ public class RestaurantMap extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        RESTAURANT = new LatLng(lat, lon);
+        ME = new LatLng(myLat, myLon);
+
+        Marker restaurant = mMap.addMarker(new MarkerOptions().position(RESTAURANT).title(restaurantName));
+        Marker me = mMap.addMarker(new MarkerOptions().position(ME).title("ME")
+                .snippet("My location")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_me)));
+
+        // Move the camera instantly to restaurant with a room of 15
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(RESTAURANT, 15));
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        LatLng sydney = new LatLng(-34, 151);
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
