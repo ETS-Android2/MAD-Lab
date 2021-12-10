@@ -20,6 +20,6 @@ step-by-step guide in building the application
 * The approach will be following the Model-
 View-Controller software design pattern
 
-```
-NOTE: Taken from SP MAD Chapter 3 powerpoint slides
+```markdown
+NOTE: Contents of README.md are taken from SP MAD Chapter 3 powerpoint slides
 ```
