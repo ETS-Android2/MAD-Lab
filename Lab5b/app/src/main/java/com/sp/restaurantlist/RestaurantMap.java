@@ -56,7 +56,7 @@ public class RestaurantMap extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        RESTAURANT = new LatLng(lat, lon);
+        RESTAURANT = new LatLng(1.335, 103.74); //hard code working
         ME = new LatLng(myLat, myLon);
 
         Marker restaurant = mMap.addMarker(new MarkerOptions().position(RESTAURANT).title(restaurantName));
