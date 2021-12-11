@@ -50,13 +50,13 @@ public class RestaurantList extends AppCompatActivity { // extends = son of
         host = findViewById(R.id.tabHost);
         host.setup();
 
-        // Tab 1
+        // Tab 1 (0)
         TabHost.TabSpec spec = host.newTabSpec("List");
         spec.setContent(R.id.restaurants_tab);
         spec.setIndicator("List");
         host.addTab(spec);
 
-        // Tab 2
+        // Tab 2 (1)
         spec = host.newTabSpec("Details");
         spec.setContent(R.id.details_tab);
         spec.setIndicator("Details");
