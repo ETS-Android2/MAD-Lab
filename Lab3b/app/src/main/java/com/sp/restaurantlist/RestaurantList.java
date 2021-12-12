@@ -226,7 +226,7 @@ public class RestaurantList extends AppCompatActivity { // extends = son of
                 restaurantTypes.check(R.id.indian);
             } else if (helper.getRestaurantType(model).equals("Indonesian")) {
                 restaurantTypes.check(R.id.indonesian);
-            } else if (helper.getRestaurantTySQLiteDatabasepe(model).equals("Korean")) {
+            } else if (helper.getRestaurantType(model).equals("Korean")) {
                 restaurantTypes.check(R.id.korean);
             } else if (helper.getRestaurantType(model).equals("Japanese")) {
                 restaurantTypes.check(R.id.japanese);

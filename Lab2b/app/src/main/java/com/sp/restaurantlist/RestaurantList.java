@@ -152,8 +152,6 @@ public class RestaurantList extends AppCompatActivity { // extends = son of
         }
     };
 
-    // string class api
-    // manipulate with user input
     static class RestaurantHolder {
         private TextView restName = null;
         private TextView addr = null;
@@ -183,8 +181,8 @@ public class RestaurantList extends AppCompatActivity { // extends = son of
         RestaurantAdapter() { super(RestaurantList.this,R.layout.row, model); } // super ==> parent constructor
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View row = convertView;
+        public View getView(int position, View convertView, ViewGroup parent) { // creating individual row
+            View row = convertView; //As getView is call many times, inflating a new view every time is expensive. So list view provides you one of the previously created view to re-use.
             RestaurantHolder holder;
             if (row == null) {
                 LayoutInflater inflater = getLayoutInflater();
